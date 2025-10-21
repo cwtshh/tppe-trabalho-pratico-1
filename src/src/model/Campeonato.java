@@ -54,10 +54,10 @@ public class Campeonato {
 
                 // Se for o segundo turno, inverte mandante e visitante
                 if(inverterMandoCampo) {
-                    Partida partida = new Partida(visitante, mandante);
+                    Partida partida = new Partida(visitante, mandante, 0, 1);
                     r.adicionarPartida(partida);
                 } else {
-                    Partida partida = new Partida(mandante, visitante);
+                    Partida partida = new Partida(mandante, visitante, 1, 0);
                     r.adicionarPartida(partida);
                 }
             }

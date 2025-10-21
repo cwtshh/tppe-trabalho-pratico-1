@@ -7,11 +7,11 @@ public class Partida {
     private int golsVisitante;
     private boolean realizada;
 
-    public Partida(Time mandante, Time visitante) {
+    public Partida(Time mandante, Time visitante, int golsDaCasa, int golsVisitante) {
         this.timeDaCasa = mandante;
         this.visitante = visitante;
-        this.golsDaCasa = 0;
-        this.golsVisitante = 0;
+        this.golsDaCasa = golsDaCasa;
+        this.golsVisitante = golsVisitante;
         this.realizada = false;
     }
 

@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Time {
@@ -11,6 +12,7 @@ public class Time {
     private int golsMarcados;
     private int golsSofridos;
     private int jogos;
+    private List<Partida> historico;
 
     public Time(String nome) {
         this.nome = nome;
@@ -21,6 +23,7 @@ public class Time {
         this.golsMarcados = 0;
         this.golsSofridos = 0;
         this.jogos = 0;
+        this.historico = new ArrayList<>();
     }
 
     public String getNome() {
@@ -59,4 +62,33 @@ public class Time {
         return jogos;
     }
 
+    public void processarResultado(Partida partida) {
+
+        historico.add(partida);
+        jogos++;
+
+        int golsTime;
+        int golsAdversario;
+
+        if (partida.getMandante().getNome().equals(this.nome)) {
+            golsTime = partida.getGolsMandante();
+            golsAdversario = partida.getGolsVisitante();
+        } else {
+            golsTime = partida.getGolsVisitante();
+            golsAdversario = partida.getGolsMandante();
+        }
+
+        golsMarcados += golsTime;
+        golsSofridos += golsAdversario;
+
+        if (golsTime > golsAdversario) {
+            vitorias++;
+            pontos += 3;
+        } else if (golsTime == golsAdversario) {
+            empates++;
+            pontos += 1;
+        } else {
+            derrotas++;
+        }
+    }
 }
