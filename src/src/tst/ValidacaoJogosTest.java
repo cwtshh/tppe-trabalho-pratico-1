@@ -92,7 +92,6 @@ public class ValidacaoJogosTest {
                         }
                     }
                 }
-                // ✅ Assert AFTER checking all rounds
                 assertEquals(confrontosPorDupla, confrontosEncontrados);
             }
         }

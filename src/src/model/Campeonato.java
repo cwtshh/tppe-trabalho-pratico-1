@@ -52,7 +52,6 @@ public class Campeonato {
                 Time mandante = times.get(home);
                 Time visitante = times.get(away);
 
-                // Se for o segundo turno, inverte mandante e visitante
                 if(inverterMandoCampo) {
                     Partida partida = new Partida(visitante, mandante, 0, 1);
                     r.adicionarPartida(partida);
