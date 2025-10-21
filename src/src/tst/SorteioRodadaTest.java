@@ -1,5 +1,6 @@
 package tst;
 
+import Exceptions.QtdPartidasInvalida;
 import Exceptions.QtdTimesInvalida;
 import org.junit.experimental.categories.Category;
 import model.Campeonato;
@@ -33,10 +34,9 @@ public class SorteioRodadaTest {
     @Before
     public void setup() throws QtdTimesInvalida {
         times = new ArrayList<>();
-        times.add(new Time("Flamengo"));
-        times.add(new Time("São Paulo"));
-        times.add(new Time("Iderlindos de Uberaba"));
-        times.add(new Time("Botafogo"));
+        for (int i = 1; i <= numeroTimes; i++) {
+            times.add(new Time("Time " + i));
+        }
         campeonato = new Campeonato(times);
     }
 
@@ -52,15 +52,9 @@ public class SorteioRodadaTest {
 
     @Test
     @Category(Funcional.class)
-    public void testSorteioGerarNumeroCorretoRodadas() {
+    public void testSorteioGerarNumeroCorretoRodadas() throws QtdPartidasInvalida {
         campeonato.sortearRodadas();
         List<Rodada> rodadas = campeonato.getRodadas();
-
         assertEquals(numeroRodadasEsperado, rodadas.size());
     }
-
-
-
-
-
 }

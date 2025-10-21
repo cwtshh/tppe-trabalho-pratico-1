@@ -7,12 +7,12 @@ public class Partida {
     private int golsVisitante;
     private boolean realizada;
 
-    public Partida(Time timeDaCasa, Time visitante, int golsDaCasa, int golsVisitante) {
-        this.timeDaCasa = timeDaCasa;
+    public Partida(Time mandante, Time visitante) {
+        this.timeDaCasa = mandante;
         this.visitante = visitante;
-        this.golsDaCasa = golsDaCasa;
-        this.golsVisitante = golsVisitante;
-        this.realizada = true;
+        this.golsDaCasa = 0;
+        this.golsVisitante = 0;
+        this.realizada = false;
     }
 
     public Time getMandante() {

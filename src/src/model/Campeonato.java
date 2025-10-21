@@ -1,8 +1,10 @@
 package model;
 
+import Exceptions.QtdPartidasInvalida;
 import Exceptions.QtdTimesInvalida;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Campeonato {
@@ -25,5 +27,43 @@ public class Campeonato {
 
     public List<Rodada> getRodadas() {
         return rodadas;
+    }
+
+    public void sortearRodadas() throws QtdPartidasInvalida {
+        rodadas.clear();
+
+        List<Time> timesTmp = new ArrayList<>(times);
+        Collections.shuffle(timesTmp);
+
+        gerarTurno(timesTmp, 1);
+        gerarTurno(timesTmp, 20);
+    }
+
+    private void gerarTurno(List<Time> times, int rodadaInicial) throws QtdPartidasInvalida {
+        int numTimes = times.size();
+
+        for(int rodada = 0; rodada < 19; rodada++) {
+            Rodada r = new Rodada(rodadaInicial + rodada);
+
+            for(int i = 0; i < numTimes / 2; i++) {
+                int home = i;
+                int away = numTimes - 1 - i;
+
+                Time mandante = times.get(home);
+                Time visitante = times.get(away);
+
+                Partida partida = new Partida(mandante, visitante);
+                r.adicionarPartida(partida);
+            }
+            rodadas.add(r);
+
+            rotacionarTimes(times);
+        }
+    }
+
+    private void rotacionarTimes(List<Time> times) {
+        if(times.size() < 2) return;
+        Time ultimo = times.remove(times.size() - 1);
+        times.add(1, ultimo);
     }
 }
