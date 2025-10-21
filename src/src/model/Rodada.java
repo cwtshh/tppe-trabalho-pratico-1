@@ -20,4 +20,8 @@ public class Rodada {
         }
         partidas.add(partida);
     }
+
+    public List<Partida> getPartidas() {
+        return this.partidas;
+    }
 }

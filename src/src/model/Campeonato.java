@@ -35,11 +35,11 @@ public class Campeonato {
         List<Time> timesTmp = new ArrayList<>(times);
         Collections.shuffle(timesTmp);
 
-        gerarTurno(timesTmp, 1);
-        gerarTurno(timesTmp, 20);
+        gerarTurno(timesTmp, 1, false);
+        gerarTurno(timesTmp, 20, true);
     }
 
-    private void gerarTurno(List<Time> times, int rodadaInicial) throws QtdPartidasInvalida {
+    private void gerarTurno(List<Time> times, int rodadaInicial, boolean inverterMandoCampo) throws QtdPartidasInvalida {
         int numTimes = times.size();
 
         for(int rodada = 0; rodada < 19; rodada++) {
@@ -52,8 +52,14 @@ public class Campeonato {
                 Time mandante = times.get(home);
                 Time visitante = times.get(away);
 
-                Partida partida = new Partida(mandante, visitante);
-                r.adicionarPartida(partida);
+                // Se for o segundo turno, inverte mandante e visitante
+                if(inverterMandoCampo) {
+                    Partida partida = new Partida(visitante, mandante);
+                    r.adicionarPartida(partida);
+                } else {
+                    Partida partida = new Partida(mandante, visitante);
+                    r.adicionarPartida(partida);
+                }
             }
             rodadas.add(r);
 
