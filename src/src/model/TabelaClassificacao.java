@@ -6,7 +6,7 @@ import java.util.List;
 
 public class TabelaClassificacao {
 
-    private Comparator<Time> criterioClassificacao;
+    private final Comparator<Time> criterioClassificacao;
 
     public TabelaClassificacao() {
         this.criterioClassificacao = new Comparator<Time>() {

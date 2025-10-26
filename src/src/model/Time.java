@@ -63,7 +63,6 @@ public class Time {
     }
 
     public void processarResultado(Partida partida) {
-        // Pré-condição: partida diferente de nulo
         assert partida != null : "Partida não pode ser nula";
         historico.add(partida);
         jogos++;
@@ -71,7 +70,6 @@ public class Time {
         int golsTime;
         int golsAdversario;
 
-        // Define corretamente quem é o time neste contexto
         if (partida.getMandante().getNome().equals(this.nome)) {
             golsTime = partida.getGolsMandante();
             golsAdversario = partida.getGolsVisitante();
@@ -79,7 +77,6 @@ public class Time {
             golsTime = partida.getGolsVisitante();
             golsAdversario = partida.getGolsMandante();
         } else {
-            // Contrato violado: time não está na partida
             throw new IllegalArgumentException("O time não participa desta partida.");
         }
 
