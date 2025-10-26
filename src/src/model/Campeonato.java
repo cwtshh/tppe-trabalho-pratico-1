@@ -41,34 +41,25 @@ public class Campeonato {
 
     private void gerarTurno(List<Time> times, int rodadaInicial, boolean inverterMandoCampo) throws QtdPartidasInvalida {
         int numTimes = times.size();
+        assert numTimes == NUMERO_TIMES : "O número de times deve ser 20";
 
-        for(int rodada = 0; rodada < 19; rodada++) {
+        for (int rodada = 0; rodada < 19; rodada++) {
             Rodada r = new Rodada(rodadaInicial + rodada);
-
-            for(int i = 0; i < numTimes / 2; i++) {
-                int home = i;
-                int away = numTimes - 1 - i;
-
-                Time mandante = times.get(home);
-                Time visitante = times.get(away);
-
-                if(inverterMandoCampo) {
-                    Partida partida = new Partida(visitante, mandante, 0, 1);
-                    r.adicionarPartida(partida);
-                } else {
-                    Partida partida = new Partida(mandante, visitante, 1, 0);
-                    r.adicionarPartida(partida);
-                }
+            for (int i = 0; i < numTimes / 2; i++) {
+                Time mandante = inverterMandoCampo ? times.get(numTimes - 1 - i) : times.get(i);
+                Time visitante = inverterMandoCampo ? times.get(i) : times.get(numTimes - 1 - i);
+                Partida partida = new Partida(mandante, visitante, 0, 0);
+                r.adicionarPartida(partida); // Contrato: partidas.size() <= 10
             }
             rodadas.add(r);
-
             rotacionarTimes(times);
         }
     }
 
     private void rotacionarTimes(List<Time> times) {
-        if(times.size() < 2) return;
-        Time ultimo = times.remove(times.size() - 1);
-        times.add(1, ultimo);
+        if (times.size() > 2) {
+            Time ultimo = times.remove(times.size() - 1);
+            times.add(1, ultimo);
+        }
     }
 }

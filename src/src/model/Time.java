@@ -63,23 +63,29 @@ public class Time {
     }
 
     public void processarResultado(Partida partida) {
-
+        // Pré-condição: partida diferente de nulo
+        assert partida != null : "Partida não pode ser nula";
         historico.add(partida);
         jogos++;
 
         int golsTime;
         int golsAdversario;
 
+        // Define corretamente quem é o time neste contexto
         if (partida.getMandante().getNome().equals(this.nome)) {
             golsTime = partida.getGolsMandante();
             golsAdversario = partida.getGolsVisitante();
-        } else {
+        } else if (partida.getVisitante().getNome().equals(this.nome)) {
             golsTime = partida.getGolsVisitante();
             golsAdversario = partida.getGolsMandante();
+        } else {
+            // Contrato violado: time não está na partida
+            throw new IllegalArgumentException("O time não participa desta partida.");
         }
 
         golsMarcados += golsTime;
         golsSofridos += golsAdversario;
+        assert golsMarcados >= 0 && golsSofridos >= 0 : "Gols não podem ser negativos";
 
         if (golsTime > golsAdversario) {
             vitorias++;
@@ -90,5 +96,6 @@ public class Time {
         } else {
             derrotas++;
         }
+        assert pontos >= 0 : "Pontos não podem ser negativos";
     }
 }

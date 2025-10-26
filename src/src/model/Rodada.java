@@ -8,6 +8,7 @@ import java.util.List;
 public class Rodada {
     private int numero;
     private List<Partida> partidas;
+    private static final int LIMITE_PARTIDAS = 10;
 
     public Rodada(int numero) {
         this.numero = numero;
@@ -15,7 +16,8 @@ public class Rodada {
     }
 
     public void adicionarPartida(Partida partida) throws QtdPartidasInvalida {
-        if(partidas.size() >= 10) {
+        assert partida != null : "Partida não pode ser nula";
+        if (partidas.size() >= LIMITE_PARTIDAS) {
             throw new QtdPartidasInvalida();
         }
         partidas.add(partida);
