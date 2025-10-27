@@ -78,6 +78,8 @@ Além disso, ultilizamos:
 
 - Categorias de testes, organizando os casos por tipo e objetivo.
 - Testes parametrizadoss para checar várias situações diferentes com o mesmo teste.
-- Suítes de teste (AllTests), que executam todos de uma vez só e mostram se todo o sistema está funcionando.
+- **Suítes de testes funcionais**, que verificam se o sistema faz corretamente o que deveria nas situações comuns de uso.
+- **Suítes de testes de exceção**, que testam como o sistema reage diante de algum erro ou situação inesperada, garantindo que ele não quebre e trate os erros de forma adequada.
+- **Suítes de teste (AllTests)**, que executam todos de uma vez só (Funcionais e de Exceção) e mostram se todo o sistema está funcionando .
 
 Essas práticas fizeram com que o nosso sistema funcionasse com qualidade, e que aprendessemos mais sobre as tecnicas de desenvolvimento.
