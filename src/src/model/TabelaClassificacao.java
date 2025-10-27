@@ -82,7 +82,7 @@ public class TabelaClassificacao {
         } else if (posicao >= 17) {
             return "Zona de Rebaixamento";
         }
-        return "  "; // Zona intermediária
+        return "  ";
     }
 
     public Time getCampeao(List<Time> times) {

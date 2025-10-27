@@ -58,7 +58,6 @@ public class CriterioDesempateTest {
                         new String[]{"Atlético-MG", "Grêmio"},
                         "Desempate por saldo de gols"
                 },
-                // Cenário 4: Desempate por gols marcados
                 {
                         new TimeStats[] {
                                 new TimeStats("Internacional", new int[][]{{3,1}}),

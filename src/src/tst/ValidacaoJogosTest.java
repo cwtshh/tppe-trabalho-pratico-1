@@ -21,21 +21,19 @@ import static org.junit.Assert.*;
 public class ValidacaoJogosTest {
     private Campeonato campeonato;
     private List<Time> times;
-    private int totalPartidasEsperado;
     private int confrontosPorDupla;
 
     @Parameters
     public static Collection<Object[]> getParameters() {
         Object[][] parametros = new Object[][] {
-                { 380, 2 },
-                { 380, 2 },
-                { 380, 2 }
+                { 2 },
+                { 2 },
+                { 2 }
         };
         return Arrays.asList(parametros);
     }
 
-    public ValidacaoJogosTest(int totalPartidasEsperado, int confrontosPorDupla) {
-        this.totalPartidasEsperado = totalPartidasEsperado;
+    public ValidacaoJogosTest(int confrontosPorDupla) {
         this.confrontosPorDupla = confrontosPorDupla;
     }
 
@@ -119,7 +117,6 @@ public class ValidacaoJogosTest {
             totalPartidas += rodada.getPartidas().size();
         }
 
-        // 38 rodadas * 10 partidas = 380 partidas
         assertEquals(380, totalPartidas);
     }
 

@@ -22,13 +22,11 @@ public class SorteioRodadaTest {
     private List<Time> times;
     private int numeroRodadasEsperado;
     private int numeroTimes;
-    private int partidasPorRodada;
 
 
-    public SorteioRodadaTest(int numeroTimes, int numeroRodadasEsperado, int partidasPorRodada) {
+    public SorteioRodadaTest(int numeroTimes, int numeroRodadasEsperado) {
         this.numeroTimes = numeroTimes;
         this.numeroRodadasEsperado = numeroRodadasEsperado;
-        this.partidasPorRodada = partidasPorRodada;
     }
 
     @Before
@@ -43,9 +41,9 @@ public class SorteioRodadaTest {
     @Parameters
     public static Collection<Object[]> getParameters() {
         Object[][] parameters = new Object[][] {
-                {20, 38, 10},
-                {20, 38, 10},
-                {20, 38, 10}
+                {20, 38},
+                {20, 38},
+                {20, 38}
         };
         return Arrays.asList(parameters);
     }
