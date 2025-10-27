@@ -63,3 +63,21 @@ tppe-trabalho-pratico-1
 └─ README.md
 └─ tppe-trabalho-pratico-1.iml
 ```
+
+## Considerações finais
+
+Com base na metodologia de **TDD**, fizemos as seguintes etapas:
+
+- Escrevemos os testes automatizados para cada funcionalidade.
+- Desenvolvemos as classes e métodos que os testes pediam.
+- Rodamos os testes e confirmamos que tudo estava funcionando.
+- Quando os testes passaram, fizemos melhorias no código sem perder o que já estava certo.
+- Aplicamos as etapas finais, terminando a aplicação com qualidade e teste robustos.
+
+Além disso, ultilizamos:
+
+- Categorias de testes, organizando os casos por tipo e objetivo.
+- Testes parametrizadoss para checar várias situações diferentes com o mesmo teste.
+- Suítes de teste (AllTests), que executam todos de uma vez só e mostram se todo o sistema está funcionando.
+
+Essas práticas fizeram com que o nosso sistema funcionasse com qualidade, e que aprendessemos mais sobre as tecnicas de desenvolvimento.
