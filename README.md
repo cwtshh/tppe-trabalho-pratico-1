@@ -64,6 +64,37 @@ tppe-trabalho-pratico-1
 └─ tppe-trabalho-pratico-1.iml
 ```
 
+## 3. Explicação do TDD passo a passo
+
+### 1. Escrever o primeiro teste falhando
+
+Precisamos garantir que o teste `SorteioRodadaTest` falhe inicialmente ao apontar a ausência de um método na classe `Campeonato`.
+
+Este teste verifica se o sorteio gera o número correto de rodadas para a quantidade de times, o que força a criação da API pública `sortearRodadas()` e o armazenamento das rodadas no domínio.
+
+![Sorteio Rodada - diagrama/print](./src/imagens/tdd1.png)
+
+---
+
+### 2. Implementar o código mínimo para o teste passar
+
+Em seguida, implementamos o mínimo necessário para fazer o teste passar, priorizando correção antes de qualquer otimização. Com isso, conseguimos fazer o teste passar atualizando a classe `Campeonato`.
+
+A lógica introduzida cria as 38 rodadas para 20 times, evitando duplicidade de confrontos por rodada e expondo os métodos necessários em `Campeonato` para consumo pelos testes.
+
+![Implementação mínima - exemplo](./src/imagens/tdd2.png)
+
+---
+
+### 3. Refatorar o código
+
+Com os testes passando, realiza-se a refatoração para melhorar o código deixando-o mais forte e refatoramos os testes para parametrizados, mantendo o comportamento e sem alterar os resultados esperados.
+
+Você pode ver o código aqui: [Ver código do SorteioRodada](./src/src/tst/SorteioRodadaTest.java)
+
+> **Fizemos este passo a passo para todos os testes apresentados no projeto.**
+
+
 ## Considerações finais
 
 Com base na metodologia de **TDD**, fizemos as seguintes etapas:
@@ -77,7 +108,7 @@ Com base na metodologia de **TDD**, fizemos as seguintes etapas:
 Além disso, ultilizamos:
 
 - Categorias de testes, organizando os casos por tipo e objetivo.
-- Testes parametrizadoss para checar várias situações diferentes com o mesmo teste.
+- Testes parametrizados para checar várias situações diferentes com o mesmo teste.
 - **Suítes de testes funcionais**, que verificam se o sistema faz corretamente o que deveria nas situações comuns de uso.
 - **Suítes de testes de exceção**, que testam como o sistema reage diante de algum erro ou situação inesperada, garantindo que ele não quebre e trate os erros de forma adequada.
 - **Suítes de teste (AllTests)**, que executam todos de uma vez só (Funcionais e de Exceção) e mostram se todo o sistema está funcionando .
