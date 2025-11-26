@@ -2,6 +2,7 @@ package tst;
 
 import model.TabelaClassificacao;
 import model.Time;
+import model.EstatisticasTime;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,11 +29,17 @@ public class ExibirTabelaClassificacaoTest {
         System.setOut(originalOut);
     }
 
+    /** Ajustado para escrever dentro de Time.estatisticas */
     private void setCampo(Time time, String campo, int valor) {
         try {
-            Field f = Time.class.getDeclaredField(campo);
-            f.setAccessible(true);
-            f.setInt(time, valor);
+            Field fEst = Time.class.getDeclaredField("estatisticas");
+            fEst.setAccessible(true);
+            EstatisticasTime estat = (EstatisticasTime) fEst.get(time);
+
+            Field fInterno = EstatisticasTime.class.getDeclaredField(campo);
+            fInterno.setAccessible(true);
+            fInterno.setInt(estat, valor);
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -43,6 +50,7 @@ public class ExibirTabelaClassificacaoTest {
         Time t1 = new Time("Flamengo");
         Time t2 = new Time("Palmeiras");
         Time t3 = new Time("Botafogo");
+
         setCampo(t1, "pontos", 10);
         setCampo(t1, "vitorias", 4);
         setCampo(t1, "empates", 3);
@@ -68,6 +76,7 @@ public class ExibirTabelaClassificacaoTest {
 
         TabelaClassificacao tabela = new TabelaClassificacao();
         tabela.exibirClassificacao(times);
+
         String saida = outContent.toString();
 
         assertTrue("Deve imprimir cabeçalho",
@@ -79,10 +88,8 @@ public class ExibirTabelaClassificacaoTest {
         int indexPalmeiras = saida.indexOf("Palmeiras");
         int indexFlamengo = saida.indexOf("Flamengo");
 
-        assertTrue(
-                "Palmeiras deve aparecer antes de Flamengo",
-                indexPalmeiras < indexFlamengo
-        );
+        assertTrue("Palmeiras deve aparecer antes de Flamengo",
+                indexPalmeiras < indexFlamengo);
 
         assertTrue("Rodapé deve ser impresso",
                 saida.contains("Zona de Rebaixamento"));
