@@ -40,20 +40,7 @@ public class Campeonato {
     }
 
     private void gerarTurno(List<Time> times, int rodadaInicial, boolean inverterMandoCampo) throws QtdPartidasInvalida {
-        int numTimes = times.size();
-        assert numTimes == NUMERO_TIMES : "O número de times deve ser 20";
-
-        for (int rodada = 0; rodada < 19; rodada++) {
-            Rodada r = new Rodada(rodadaInicial + rodada);
-            for (int i = 0; i < numTimes / 2; i++) {
-                Time mandante = inverterMandoCampo ? times.get(numTimes - 1 - i) : times.get(i);
-                Time visitante = inverterMandoCampo ? times.get(i) : times.get(numTimes - 1 - i);
-                Partida partida = new Partida(mandante, visitante, 0, 0);
-                r.adicionarPartida(partida); // Contrato: partidas.size() <= 10
-            }
-            rodadas.add(r);
-            rotacionarTimes(times);
-        }
+        new GeradorDeTurno(times, rodadas, rodadaInicial, inverterMandoCampo).gerar();
     }
 
     private void rotacionarTimes(List<Time> times) {
