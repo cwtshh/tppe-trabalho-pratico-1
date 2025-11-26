@@ -11,7 +11,8 @@ import org.junit.runners.Suite;
         ValidacaoJogosTest.class,
         CalculoPontuacaoTest.class,
         CalculoEstatisticasTest.class,
-        CriterioDesempateTest.class
+        CriterioDesempateTest.class,
+        ExibirTabelaClassificacaoTest.class
 })
 public class FuncionalTests {
 }

@@ -39,31 +39,43 @@ public class TabelaClassificacao {
 
     public void exibirClassificacao(List<Time> times) {
         ordenar(times);
+        imprimirCabecalho();
+        for (int i = 0; i < times.size(); i++) {
+            Time time = times.get(i);
+            int posicao = i + 1;
+            String zona = getZonaClassificacao(i + 1);
 
+            imprimirLinhaClassificacao(time, posicao, zona);
+        }
+        imprimirRodape();
+    }
+
+    private void imprimirCabecalho() {
         System.out.println("\n╔════════════════════════════════════════════════════════════════════════════╗");
         System.out.println("║              TABELA DE CLASSIFICAÇÃO - BRASILEIRÃO SÉRIE A 2025           ║");
         System.out.println("╠════╦═══════════════════╦═════╦═════╦═════╦═════╦═════╦═════╦═════╦═══════╣");
         System.out.println("║ Pos║ Time              ║  Pts║    J║    V║    E║    D║   GM║   GS║     SG║");
         System.out.println("╠════╬═══════════════════╬═════╬═════╬═════╬═════╬═════╬═════╬═════╬═══════╣");
+    }
 
-        for (int i = 0; i < times.size(); i++) {
-            Time time = times.get(i);
-            String zona = getZonaClassificacao(i + 1);
+    private void imprimirLinhaClassificacao(Time time, int posicao, String zona) {
+        System.out.printf(
+                "║ %2d%s║ %-17s ║ %4d║ %4d║ %4d║ %4d║ %4d║ %4d║ %4d║ %6d║\n",
+                posicao,
+                zona,
+                time.getNome(),
+                time.getPontos(),
+                time.getJogos(),
+                time.getVitorias(),
+                time.getEmpates(),
+                time.getDerrotas(),
+                time.getGolsMarcados(),
+                time.getGolsSofridos(),
+                time.getSaldoGols()
+        );
+    }
 
-            System.out.printf("║ %2d%s║ %-17s ║ %4d║ %4d║ %4d║ %4d║ %4d║ %4d║ %4d║ %6d║\n",
-                    (i + 1),
-                    zona,
-                    time.getNome(),
-                    time.getPontos(),
-                    time.getJogos(),
-                    time.getVitorias(),
-                    time.getEmpates(),
-                    time.getDerrotas(),
-                    time.getGolsMarcados(),
-                    time.getGolsSofridos(),
-                    time.getSaldoGols());
-        }
-
+    private void imprimirRodape() {
         System.out.println("╚════╩═══════════════════╩═════╩═════╩═════╩═════╩═════╩═════╩═════╩═══════╝");
         System.out.println("\nLegenda:");
         System.out.println(" Libertadores (Fase de Grupos)");
